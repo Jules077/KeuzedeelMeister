@@ -26,45 +26,36 @@
     </div>
 </div>
 
+<!-- Modal confirm -->
+<div class="modal fade" id="confirm-keuze" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Weet je het zeker??</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="confirm-body">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" style="float: left; width: 48%;" id="keuzedeel-confirmed"
+                    name="btnuploadxml">Ja</button>
+                <button type="button" style="float: right; width: 48%;" class="btn btn-danger"
+                    data-bs-dismiss="modal">Nee</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <body id="student-body">
     <h2 class="mt-2">Welkom bij KeuzedeelMeister</h2>
     <p>De beste keuzedeel kiezer!</p>
     <div id="info-container" class="mt-2">
         <h3>Keuzedelen</h3>
         <div class="list-group" id="keuzedelen-list">
-            <a href="https://www.s-bb.nl/" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Spaans</h5>
-                    <small class="text-muted">3 plekken vrij</small>
-                </div>
-                <p class="mb-1">eventueel info of docent</p>
-                <small class="text-muted">Klik voor meer info.</small>
-            </a>
-            <a href="https://www.s-bb.nl/" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Software verdieping</h5>
-                    <small class="text-muted">8 plekken vrij</small>
-                </div>
-                <p class="mb-1">eventueel info of docent</p>
-                <small class="text-muted">Klik voor meer info.</small>
-            </a>
-            <a href="https://www.s-bb.nl/" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">AR & VR</h5>
-                    <small class="text-muted">7 plekken vrij</small>
-                </div>
-                <p class="mb-1">eventueel info of docent</p>
-                <small class="text-muted">Klik voor meer info.</small>
-            </a>
         </div>
     </div>
 
     <div id="countdown-container" class="mt-2">
-        <h5>Je kunt kiezen over:</h5>
-        <span class="h1 font-weight-bold">10</span> Days
-        <span class="h1 font-weight-bold">5</span> Hr
-        <span class="h1 font-weight-bold">23</span> Min
-        <span class="h1 font-weight-bold">15</span> Sec
     </div>
 
     <div id="keuze-container" class="mt-2">
@@ -72,23 +63,21 @@
         <div class="input-group mb-3">
             <label class="input-group-text" for="keuzedeel-select">Keuzedelen</label>
             <select class="form-select" id="keuzedeel-select">
-                <option selected>kies...</option>
-                <option value="1">Software verdieping</option>
-                <option value="2">Spaans</option>
-                <option value="3">AR & VR</option>
             </select>
         </div>
         <p>Keuzedeel voorkeur</p>
         <div class="input-group mb-3">
             <label class="input-group-text" for="keuzedeel-voorkeur-select">Keuzedelen</label>
             <select class="form-select" id="keuzedeel-voorkeur-select">
-                <option selected disabled>kies...</option>
-                <option value="1">Software verdieping</option>
-                <option value="2">Spaans</option>
-                <option value="3">AR & VR</option>
             </select>
         </div>
-        <button class="btn btn-success" type="button">Kies</button>
+        <button class="btn btn-success" id="keuzedeel-submit" type="button">Kies</button>
+    </div>
+
+    <div id="none-container" class="mt-2">
+        <h3>Je kan niks meer kiezen!</h3>
+        <h5>"Good luck, have fun"<br><small>-Jules Zwarts</small></h5>
+        <button type="button" class="btn btn-danger" id="btn-logout">Afmelden</button>
     </div>
 
     <!-- BOOTSTRAP, JS, ETC. -->

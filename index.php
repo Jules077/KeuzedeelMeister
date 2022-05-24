@@ -13,6 +13,20 @@
         <title>KeuzedeelMeister</title>
     </head>
 
+<!-- Modal Notification -->
+<div class="modal fade notification-modal" tabindex="-1" id="notification-modal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" id="notification-header"></div>
+            <div class="modal-body" id="notification-message">
+            </div>
+            <div class="modal-footer">
+                <button type="button" style="width: 100%;" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <body class="d-flex h-100 text-center text-white bg-dark">
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">

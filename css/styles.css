@@ -95,6 +95,10 @@ body{
   max-height: 50vh;
 }
 
+.modal {
+  color: black;
+}
+
 #countdown-container{
   border: 1px #333333;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
@@ -106,6 +110,7 @@ body{
   background-color: white;
   color: #333333;
   text-align: center;
+  display: none;
 }
 
 #keuze-container{
@@ -119,6 +124,21 @@ body{
   background-color: white;
   color: #333333;
   text-align: center;
+  display: none;
+}
+
+#none-container{
+  border: 1px #333333;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);;
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+  border-radius: 5px;
+  background-color: white;
+  color: #333333;
+  text-align: center;
+  display: none;
 }
 
 /* Teachers page */
