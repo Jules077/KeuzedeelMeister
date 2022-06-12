@@ -26,6 +26,22 @@
   </div>
 </div>
 
+<!-- Modal delete -->
+<div class="modal fade delete-modal" tabindex="-1" id="delete-confirm-modal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" id="delete-header"><h2>Delete</h2></div>
+      <div class="modal-body" id="delete-message">
+        <p>Weet je het zeker?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 46%;" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" style="width: 46%;" class="btn btn-success btn-confrim-delete" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal import students -->
 <div class="modal fade" id="import-students-modal" role="dialog">
     <div class="modal-dialog">

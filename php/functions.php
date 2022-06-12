@@ -56,6 +56,7 @@ function dd($var, $die = false)
 
 }
 
+//for connecting too the database
 function dbConnect() {
     $dbConnect = mysqli_connect(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     if(!$dbConnect) die("Unable to connect to MySQL: " . mysqli_error($dbConnect));
@@ -114,7 +115,7 @@ function GetResults($teacher) {
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
 
-        $sql = "SELECT resultaat_id, studenten_nummer, keuzedeel_nummer, keuzedeel_info, prioriteit, gekozen_op FROM `kz_resultaten` JOIN kz_keuzedelen ON kz_resultaten.keuzedeel_nummer = kz_keuzedelen.keuzedeelNummer";
+        $sql = "SELECT resultaat_id, kz_resultaten.studenten_nummer, keuzedeel_nummer, keuzedeel_info, prioriteit, gekozen_op, voornaam, tussenvoegsel, achternaam, klas_naam FROM `kz_resultaten` JOIN kz_keuzedelen ON kz_resultaten.keuzedeel_nummer = kz_keuzedelen.keuzedeelNummer JOIN kz_studenten ON kz_resultaten.studenten_nummer = kz_studenten.studenten_nummer;";
 
         $result = $conn->query($sql) or die($conn->error);
         
@@ -255,6 +256,7 @@ function GetKeuzedelenTeacher($teacher) {
 	}
 };
 
+//delete keuzedeel from database
 function DeleteKeuzedeel($teacher, $keuzedeel){
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
@@ -277,6 +279,7 @@ function DeleteKeuzedeel($teacher, $keuzedeel){
 	}
 };
 
+//delete opleiding from database
 function DeleteOpleiding($teacher, $opleiding){
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
@@ -299,6 +302,7 @@ function DeleteOpleiding($teacher, $opleiding){
 	}
 };
 
+//delete student from database
 function DeleteStudent($teacher, $student){
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
@@ -321,6 +325,7 @@ function DeleteStudent($teacher, $student){
 	}
 };
 
+//delete klas from database
 function DeleteKlas($teacher, $klas){
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
@@ -343,6 +348,7 @@ function DeleteKlas($teacher, $klas){
 	}
 };
 
+//delete result from database
 function DeleteResultaat($teacher, $resultaat){
     if($_SESSION['teacher'] == $teacher){
         $conn = dbConnect();
@@ -365,11 +371,13 @@ function DeleteResultaat($teacher, $resultaat){
 	}
 };
 
+//adding the results of the chosen keuzedeel in the database
 function AddChosenKeuzedeel($studentNummer, $keuzedeel, $keuzedeelVoorkeur){
     $result = GetKeuzedelen($studentNummer);
     $checkKeuzedeelVoorkeur = false;
     $checkKeuzedeel = false;
 
+    //validator for security
     if($result["statusCode"] == 200){
         $checkKeuzedeel = false;
         foreach ($result as $key => $val){
@@ -379,7 +387,7 @@ function AddChosenKeuzedeel($studentNummer, $keuzedeel, $keuzedeelVoorkeur){
                     if($val["keuzedeel_count"] != NULL){
                         $keuzedeelPlaats = $val["plaatsen"] - $val["keuzedeel_count"];
                         if($keuzedeelPlaats > 0){
-                        $checkKeuzedeel = true;
+                            $checkKeuzedeel = true;
                         }
                     }else{
                         $keuzedeelPlaats = $val["plaatsen"] - 0;
@@ -395,6 +403,7 @@ function AddChosenKeuzedeel($studentNummer, $keuzedeel, $keuzedeelVoorkeur){
         }
     }
 
+        //database call
         if($result["gekozen"] == null && $checkKeuzedeelVoorkeur == true && $checkKeuzedeel == true){
             $conn = dbConnect();
             $sqlKeuzedeel = "INSERT INTO `kz_resultaten` (`resultaat_id`, `studenten_nummer`, `keuzedeel_nummer`, `prioriteit`, `gekozen_op`) VALUES (NULL, '$studentNummer', '$keuzedeel', '1', current_timestamp());";

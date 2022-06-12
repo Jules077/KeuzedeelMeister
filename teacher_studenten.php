@@ -26,6 +26,44 @@
   </div>
 </div>
 
+<!-- Modal delete -->
+<div class="modal fade delete-modal" tabindex="-1" id="delete-confirm-modal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" id="delete-header"><h2>Delete</h2></div>
+      <div class="modal-body" id="delete-message">
+        <p>Weet je het zeker?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="width: 46%;" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" style="width: 46%;" class="btn btn-success btn-confrim-delete" data-bs-dismiss="modal">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal import students -->
+<div class="modal fade" id="import-students-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Students</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="import-students-body">
+              <label class="form-label" for="student-import-file">select student csv document</label>
+              <input type="file" class="form-control" id="student-import-file" />
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" style="float: left; width: 48%;" id="btn-final-import"
+                    name="btnuploadxml">Import</button>
+                <button type="button" style="float: right; width: 48%;" class="btn btn-danger"
+                    data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <body>
 
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">

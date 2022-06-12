@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  //for delete function
+  let deleteTableName = "";
+  let deleteID = 0;
+
   //checks if user is logged in on opening site
   if (sessionStorage.teacher) {
     console.log(sessionStorage.teacher);
@@ -27,21 +31,27 @@ $(document).ready(function () {
   });
 
   $(document).on('click', ".btn-delete", function () {
-    switch (this.dataset.table) {
+    tableNameDelete = this.dataset.table;
+    deleteID = this.id;
+    $('#delete-confirm-modal').modal('show');
+  });
+  
+  $(document).on('click', ".btn-confrim-delete", function () {
+    switch (tableNameDelete) {
       case "keuzedelen":
-        DeleteKeuzedeel(this.id);
+        DeleteKeuzedeel(deleteID);
         break;
       case "opleiding":
-        DeleteOpleiding(this.id);
+        DeleteOpleiding(deleteID);
         break;
       case "studenten":
-        DeleteStudent(this.id);
+        DeleteStudent(deleteID);
         break;
       case "klassen":
-        DeleteKlas(this.id);
+        DeleteKlas(deleteID);
         break;
       case "resultaten":
-        DeleteResultaat(this.id);
+        DeleteResultaat(deleteID);
         break;
       default:
         console.log("error");

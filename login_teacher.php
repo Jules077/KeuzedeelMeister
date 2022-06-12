@@ -33,6 +33,7 @@
         src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fopleiding.com%2Fu%2Fopleider%2Froc-ter-aa-1.png&f=1&nofb=1"
         alt="" height="57">
       <h1 class="h3 mb-3 fw-normal">KeuzedeelMeister</h1>
+      <p>Docenten login</p>
 
       <div class="form-floating">
         <input type="email" id="email-login" class="form-control" placeholder="name@example.com">

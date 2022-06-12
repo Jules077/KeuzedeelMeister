@@ -261,9 +261,9 @@ function ExportResults() {
     success: function (dataResult) {
       let result = JSON.parse(dataResult);
       if (result.statusCode == 200) {
-        //default on top of the table
+        //default on top of the table values
         let rows = [
-          ["StudentenNummer", "KeuzedeelNummer", "KeuzedeelNaam", "KeuzedeelVoorkeurNummer", "KeuzedeelVoorkeurNaam", "GekozenDatum"],
+          ["StudentenNummer", "Voornaam", "tussenvoegsel", "Achternaam", "Klas", "KeuzedeelNummer", "KeuzedeelNaam", "KeuzedeelVoorkeurNummer", "KeuzedeelVoorkeurNaam", "GekozenDatum"],
         ];
 
         //loops through data checks if student alrady excists in array and adds data else it will add new row for student
@@ -275,24 +275,32 @@ function ExportResults() {
             if (arrayCheck == 0) {
               if (value.prioriteit == 1) {
                 rows[i][0] = value.studenten_nummer;
-                rows[i][1] = value.keuzedeel_nummer;
-                rows[i][2] = value.keuzedeel_info;
-                rows[i][5] = value.gekozen_op;
+                rows[i][1] = value.voornaam;
+                rows[i][2] = value.tussenvoegsel;
+                rows[i][3] = value.achternaam;
+                rows[i][4] = value.klas_naam;
+                rows[i][5] = value.keuzedeel_nummer;
+                rows[i][6] = value.keuzedeel_info;
+                rows[i][9] = value.gekozen_op;
                 return;
               } else if (value.prioriteit == 2) {
                 rows[i][0] = value.studenten_nummer;
-                rows[i][3] = value.keuzedeel_nummer;
-                rows[i][4] = value.keuzedeel_info;
-                rows[i][5] = value.gekozen_op;
+                rows[i][1] = value.voornaam;
+                rows[i][2] = value.tussenvoegsel;
+                rows[i][3] = value.achternaam;
+                rows[i][4] = value.klas_naam;
+                rows[i][7] = value.keuzedeel_nummer;
+                rows[i][8] = value.keuzedeel_info;
+                rows[i][9] = value.gekozen_op;
                 return;
               }
             }
           }
           if (arrayCheck != 0) {
             if (value.prioriteit == 1) {
-              rows.push([value.studenten_nummer, value.keuzedeel_nummer, value.keuzedeel_info, '', '', value.gekozen_op]);
+              rows.push([value.studenten_nummer, value.voornaam, value.tussenvoegsel, value.achternaam, value.klas_naam, value.keuzedeel_nummer, value.keuzedeel_info, '', '', value.gekozen_op]);
             } else if (value.prioriteit == 2) {
-              rows.push([value.studenten_nummer, '', '', value.keuzedeel_nummer, value.keuzedeel_info, value.gekozen_op]);
+              rows.push([value.studenten_nummer, value.voornaam, value.tussenvoegsel, value.achternaam, value.klas_naam, '', '', value.keuzedeel_nummer, value.keuzedeel_info, value.gekozen_op]);
             }
           }
         });
@@ -377,7 +385,7 @@ function csvToArray(str, delimiter = ";") {
   return arr;
 }
 
-
+//load keuzedelen for teacher page
 function LoadKeuzedelen() {
   let teacher = sessionStorage.teacher;
 
@@ -395,6 +403,7 @@ function LoadKeuzedelen() {
         $("#keuzedelen-table-body").html("");
 
         $.each(result, function (key, value) {
+          //setting the html table
           if (key != "statusCode") {
             $("#keuzedelen-table-body").append(`<tr>
             <td>${result[key].keuzedeel_ID}</td>
@@ -418,9 +427,11 @@ function LoadKeuzedelen() {
   });
 }
 
+//load opleidingen for teacher page
 function LoadOpleiding() {
   let teacher = sessionStorage.teacher;
 
+  //ajax call
   $.ajax({
     url: "php/API_teacher_load_opleiding.php",
     type: "GET",
@@ -435,6 +446,7 @@ function LoadOpleiding() {
         $("#opleiding-table-body").html("");
 
         $.each(result, function (key, value) {
+          //setting html
           if (key != "statusCode") {
             $("#opleiding-table-body").append(`<tr>
             <td>${result[key].opleiding_ID}</td>
